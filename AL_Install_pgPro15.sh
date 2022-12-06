@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # Version 2022-12-06
-
 set -e # Exit immediately if a command exits with a non-zero status.
 
 #вспомогательные функции
@@ -12,10 +11,8 @@ function echo-blue    { COLOR='\033[34m' ; NORMAL='\033[0m' ; echo -e "${COLOR}$
 function echo-magenta { COLOR='\033[35m' ; NORMAL='\033[0m' ; echo -e "${COLOR}$1${NORMAL}"; }
 function echo-cyan    { COLOR='\033[36m' ; NORMAL='\033[0m' ; echo -e "${COLOR}$1${NORMAL}"; }
 
-set -e # Exit immediately if a command exits with a non-zero status.
 
-#clear
-echo-yellow "[ INFO ] STARTED AL_p1_download_1c_platform.sh----- $0"
+echo-yellow "[ INFO ] STARTED $0  SCRIPT----- $0"
 
 #перейдем в текущий каталог скрипта
 SCRIPT_FOLDER="$( cd "$( dirname "${BASH_SOURCE[0]}" )" >/dev/null 2>&1 && pwd )"
@@ -23,7 +20,6 @@ cd $SCRIPT_FOLDER
 
 SUBFOLDER_NAME="distrib"
 mkdir -p ./$SUBFOLDER_NAME
-
 cd ./$SUBFOLDER_NAME
 
 PG_SCRIPT_NAME="pgpro-repo-add.sh"
@@ -57,3 +53,5 @@ systemctl enable postgrespro-1c-15
 
 echo-blue "[ INFO ] showing status of service     ($0)"
 systemctl status postgrespro-1c-15
+
+echo-blue "[ INFO ] FINISHED SCRIPT     ($0)"
