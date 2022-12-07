@@ -27,7 +27,7 @@ if [ -e $PG_SCRIPT_NAME ];then
     echo-yellow "[ INFO ] pgpro script already downloaded ($PG_SCRIPT_NAME)    ($0)"
 else
     echo-yellow "[ INFO ] start downloading $PG_SCRIPT_NAME    ($0)"
-    wget https://repo.postgrespro.ru/1c-15/keys/pgpro-repo-add.sh 
+    wget https://repo.postgrespro.ru/1c-15/keys/pgpro-repo-add.sh  -o //dev/null
 
     #проверим загрузилось ли
     if [ -e $PG_SCRIPT_NAME ];then
@@ -39,17 +39,17 @@ else
 fi
 
 echo-blue "[ INFO ] starting $PG_SCRIPT_NAME    ($0)"
-sh $PG_SCRIPT_NAME 
+sh $PG_SCRIPT_NAME >> //dev/null
 
 
 echo-blue "[ INFO ] installing  postgrespro    ($0)"
-apt-get install postgrespro-1c-15
+apt-get install -y postgrespro-1c-15 >> //dev/null
 
 echo-blue "[ INFO ] setting user/password     ($0)"
-sudo -u postgres /usr/bin/psql -U postgres -c "alter user postgres with password 'postgrespwd';" 
+sudo -u postgres /usr/bin/psql -U postgres -c "alter user postgres with password 'postgrespwd';"   >> //dev/null
 
 echo-blue "[ INFO ] enabling(starting) service     ($0)"
-systemctl enable postgrespro-1c-15
+systemctl enable postgrespro-1c-15  >> //dev/null
 
 echo-blue "[ INFO ] showing status of service     ($0)"
 systemctl status postgrespro-1c-15
